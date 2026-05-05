@@ -1,7 +1,7 @@
 local M = {}
 
 M.dark = {
-  name = "hypersubatomic",
+  name = "hypersubatomic-dark",
   background = "dark",
   bg = "#0F111A",
   bg_dark = "#090B10",

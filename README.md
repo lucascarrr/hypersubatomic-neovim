@@ -12,13 +12,13 @@ Install this repository with your plugin manager and load either theme:
   lazy = false,
   priority = 1000,
   config = function()
-    vim.cmd.colorscheme("hypersubatomic")
+    vim.cmd.colorscheme("hypersubatomic-dark")
   end,
 }
 ```
 
 ```vim
-colorscheme hypersubatomic
+colorscheme hypersubatomic-dark
 colorscheme hypersubatomic-light
 ```
 
