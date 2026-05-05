@@ -31,6 +31,22 @@ require("hypersubatomic").setup({ style = "light" })
 
 The Neovim theme covers classic syntax groups, Tree-sitter captures, LSP semantic tokens, diagnostics, git signs, completion menus, Telescope, file trees, which-key, lazy.nvim, and terminal colors.
 
+## Ghostty
+
+Copy or symlink the Ghostty themes into your Ghostty theme directory:
+
+```sh
+mkdir -p ~/.config/ghostty/themes
+cp ghostty/hypersubatomic-dark ~/.config/ghostty/themes/
+cp ghostty/hypersubatomic-light ~/.config/ghostty/themes/
+```
+
+Then select both themes from your Ghostty config:
+
+```conf
+theme = dark:hypersubatomic-dark,light:hypersubatomic-light
+```
+
 ## tmux
 
 Source the matching tmux theme from your `.tmux.conf`:
