@@ -1,6 +1,7 @@
 local M = {}
 
-local palette = require("hypersubatomic.palette")
+local palettes = require("hypersubatomic.palette")
+local palette = palettes.dark
 
 local function highlight(group, opts)
   vim.api.nvim_set_hl(0, group, opts)
@@ -25,7 +26,7 @@ local function syntax()
     Label = { fg = c.violet },
     Operator = { fg = c.blue_alt },
     Keyword = { fg = c.green },
-    Exception = { fg = "#e54545" },
+    Exception = { fg = c.exception },
     PreProc = { fg = c.violet_alt },
     Include = { fg = c.green },
     Define = { fg = c.violet_alt },
@@ -54,7 +55,7 @@ local function syntax()
     cssClassName = { fg = c.yellow },
     cssProp = { fg = c.fg_bright },
     jsonKeyword = { fg = c.yellow },
-    jsonString = { fg = "#bfbfbf" },
+    jsonString = { fg = c.json_string },
     markdownH1 = { fg = c.yellow, bold = true },
     markdownH2 = { fg = c.yellow, bold = true },
     markdownH3 = { fg = c.yellow, bold = true },
@@ -169,7 +170,7 @@ local function editor()
     CursorLine = { bg = c.bg_highlight },
     CursorColumn = { bg = c.bg_highlight },
     CursorLineNr = { fg = c.fg_dim },
-    LineNr = { fg = "#3B3F51" },
+    LineNr = { fg = c.line_nr },
     SignColumn = { fg = c.fg, bg = c.bg },
     FoldColumn = { fg = c.fg_dim, bg = c.bg },
     Folded = { fg = c.fg_dim, bg = c.bg_dark },
@@ -184,8 +185,8 @@ local function editor()
     Question = { fg = c.cyan },
     NonText = { fg = c.fg_dim },
     SpecialKey = { fg = c.fg_dim },
-    Whitespace = { fg = "#343946" },
-    MatchParen = { fg = c.yellow, bg = "#300089", bold = true },
+    Whitespace = { fg = c.whitespace },
+    MatchParen = { fg = c.yellow, bg = c.match_paren_bg, bold = true },
     Search = { fg = c.black, bg = c.yellow },
     IncSearch = { fg = c.black, bg = c.green },
     CurSearch = { fg = c.black, bg = c.green },
@@ -198,11 +199,11 @@ local function editor()
     PmenuThumb = { bg = c.green },
     StatusLine = { fg = c.fg_dim, bg = c.bg_dark },
     StatusLineNC = { fg = c.fg_dim, bg = c.bg_dark },
-    WinSeparator = { fg = "#383a3f", bg = c.bg },
+    WinSeparator = { fg = c.win_separator, bg = c.bg },
     VertSplit = { link = "WinSeparator" },
     TabLine = { fg = c.fg, bg = c.bg },
     TabLineFill = { fg = c.fg, bg = c.bg_dark },
-    TabLineSel = { fg = c.white, bg = "#272937" },
+    TabLineSel = { fg = c.fg_bright, bg = c.tab_active_bg },
     Title = { fg = c.green, bold = true },
     WildMenu = { fg = c.yellow, bg = c.bg_dark },
     MsgArea = { fg = c.fg },
@@ -230,15 +231,15 @@ local function integrations()
     DiagnosticUnderlineWarn = { sp = c.yellow, undercurl = true },
     DiagnosticUnderlineInfo = { sp = c.cyan, undercurl = true },
     DiagnosticUnderlineHint = { sp = c.green, undercurl = true },
-    DiagnosticVirtualTextError = { fg = c.red_alt, bg = "#211018" },
-    DiagnosticVirtualTextWarn = { fg = c.yellow, bg = "#24200f" },
-    DiagnosticVirtualTextInfo = { fg = c.cyan, bg = "#0d2027" },
-    DiagnosticVirtualTextHint = { fg = c.green, bg = "#0d2119" },
+    DiagnosticVirtualTextError = { fg = c.red_alt, bg = c.diag_error_bg },
+    DiagnosticVirtualTextWarn = { fg = c.yellow, bg = c.diag_warn_bg },
+    DiagnosticVirtualTextInfo = { fg = c.cyan, bg = c.diag_info_bg },
+    DiagnosticVirtualTextHint = { fg = c.green, bg = c.diag_hint_bg },
 
-    DiffAdd = { fg = c.green, bg = "#0d2119" },
-    DiffChange = { fg = c.yellow, bg = "#24200f" },
-    DiffDelete = { fg = c.red, bg = "#241018" },
-    DiffText = { fg = c.yellow, bg = "#33290f" },
+    DiffAdd = { fg = c.green, bg = c.diag_hint_bg },
+    DiffChange = { fg = c.yellow, bg = c.diag_warn_bg },
+    DiffDelete = { fg = c.red, bg = c.diff_delete_bg },
+    DiffText = { fg = c.yellow, bg = c.diff_text_bg },
     Added = { fg = c.green },
     Changed = { fg = c.yellow },
     Removed = { fg = c.red },
@@ -305,7 +306,7 @@ local function terminal()
   local c = palette
 
   return {
-    terminal_color_0 = c.black,
+    terminal_color_0 = c.terminal_black,
     terminal_color_1 = c.red,
     terminal_color_2 = c.green,
     terminal_color_3 = c.yellow,
@@ -313,7 +314,7 @@ local function terminal()
     terminal_color_5 = c.violet,
     terminal_color_6 = c.cyan,
     terminal_color_7 = c.white,
-    terminal_color_8 = "#464B5D",
+    terminal_color_8 = c.terminal_bright_black,
     terminal_color_9 = c.red,
     terminal_color_10 = c.green,
     terminal_color_11 = c.yellow,
@@ -326,14 +327,15 @@ end
 
 function M.setup(opts)
   opts = opts or {}
+  palette = palettes.get(opts.style or vim.g.hypersubatomic_style)
 
   vim.cmd("highlight clear")
   if vim.fn.exists("syntax_on") == 1 then
     vim.cmd("syntax reset")
   end
 
-  vim.o.background = "dark"
-  vim.g.colors_name = "hypersubatomic"
+  vim.o.background = palette.background
+  vim.g.colors_name = palette.name
 
   local highlights = vim.tbl_extend(
     "force",
@@ -354,6 +356,6 @@ function M.setup(opts)
   end
 end
 
-M.palette = palette
+M.palette = palettes
 
 return M

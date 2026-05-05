@@ -1,16 +1,14 @@
-# Hypersubatomic Theme
+# Hypersubatomic Neovim
 
-The Syntax palette is inspired from a chromatic palette similar to Solarized, however, there are significant deviations. Hypersubatomic uses a more vibrant palette with higher saturation against a dark background to create a high contrast theme. Color luminosities have been carefully selected by optical adjustment to create a balanced palette. The UI colorscheme is based on *Material Theme - Ocean High Contrast* with update Hypersubatomic palette.
-
-Please file an issue if you find a bug or a PR for new language syntax features.
+Hypersubatomic is a high-contrast Neovim colorscheme ported from the original VS Code theme palette. It includes the original dark theme plus a reciprocal light theme, both using the same saturated accent colors.
 
 ## Neovim
 
-This repository can be installed directly as a Neovim colorscheme.
+Install this repository with your plugin manager and load either theme:
 
 ```lua
 {
-  "neilpanchal/hypersubatomic-vscode-theme",
+  "lucascarrr/hypersubatomic-neovim",
   lazy = false,
   priority = 1000,
   config = function()
@@ -19,31 +17,50 @@ This repository can be installed directly as a Neovim colorscheme.
 }
 ```
 
-You can also load it manually:
-
 ```vim
 colorscheme hypersubatomic
+colorscheme hypersubatomic-light
 ```
 
-The Neovim port includes classic syntax groups, Tree-sitter captures, LSP semantic tokens, diagnostics, git signs, completion menus, Telescope, file trees, which-key, lazy.nvim, and matching terminal colors.
+You can also call the Lua setup function directly:
 
-### Color Palette
-![Color Palette](https://raw.githubusercontent.com/neilpanchal/hypersubatomic-vscode-theme/master/static/color-palette.png)
+```lua
+require("hypersubatomic").setup({ style = "dark" })
+require("hypersubatomic").setup({ style = "light" })
+```
 
-### Python
-![Python Screenshot](https://raw.githubusercontent.com/neilpanchal/hypersubatomic-vscode-theme/master/static/sample-py.png)
+The Neovim theme covers classic syntax groups, Tree-sitter captures, LSP semantic tokens, diagnostics, git signs, completion menus, Telescope, file trees, which-key, lazy.nvim, and terminal colors.
 
-### PHP
-![PHP Screenshot](https://raw.githubusercontent.com/neilpanchal/hypersubatomic-vscode-theme/master/static/sample-php.png)
+## tmux
 
-### Javascript
-![Javascript Screenshot](https://raw.githubusercontent.com/neilpanchal/hypersubatomic-vscode-theme/master/static/sample-js.png)
+Source the matching tmux theme from your `.tmux.conf`:
 
-### C++
-![C++ Screenshot](https://raw.githubusercontent.com/neilpanchal/hypersubatomic-vscode-theme/master/static/sample-cpp.png)
+```tmux
+source-file ~/.config/tmux/plugins/hypersubatomic-neovim/tmux/hypersubatomic-dark.tmux
+source-file ~/.config/tmux/plugins/hypersubatomic-neovim/tmux/hypersubatomic-light.tmux
+```
 
-### HTML
-![HTML Screenshot](https://raw.githubusercontent.com/neilpanchal/hypersubatomic-vscode-theme/master/static/sample-html.png)
+With TPM:
 
-### CSS
-![CSS Screenshot](https://raw.githubusercontent.com/neilpanchal/hypersubatomic-vscode-theme/master/static/sample-css.png)
+```tmux
+set -g @plugin 'lucascarrr/hypersubatomic-neovim'
+run '~/.tmux/plugins/tpm/tpm'
+source-file ~/.tmux/plugins/hypersubatomic-neovim/tmux/hypersubatomic-dark.tmux
+```
+
+## Palette
+
+Core accents:
+
+```text
+green   #00ae6b
+red     #f2283c
+blue    #277dff
+cyan    #00a1b4
+yellow  #ffc200
+magenta #d72e82
+violet  #875afb
+orange  #ff7a00
+```
+
+Dark mode keeps the original editor base of `#0F111A`. Light mode mirrors the same accent language onto a bright `#eef6ff` base with adjusted neutrals for contrast.

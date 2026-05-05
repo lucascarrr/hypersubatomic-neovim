@@ -1,0 +1,27 @@
+set -g status-style "fg=#8F93A2,bg=#090B10"
+set -g status-left-style "fg=#000000,bg=#00ae6b,bold"
+set -g status-right-style "fg=#8F93A2,bg=#090B10"
+set -g status-left " #[bold]#S "
+set -g status-right " #[fg=#00a1b4]%H:%M #[fg=#4B526D]%d %b "
+
+set -g window-status-style "fg=#8F93A2,bg=#090B10"
+set -g window-status-current-style "fg=#ffffff,bg=#272937,bold"
+set -g window-status-activity-style "fg=#ffc200,bg=#090B10"
+set -g window-status-bell-style "fg=#000000,bg=#f2283c,bold"
+set -g window-status-format " #I:#W "
+set -g window-status-current-format " #I:#W "
+
+set -g pane-border-style "fg=#252833"
+set -g pane-active-border-style "fg=#875afb"
+set -g display-panes-colour "#277dff"
+set -g display-panes-active-colour "#ffc200"
+
+set -g message-style "fg=#eef6ff,bg=#1A1C25"
+set -g message-command-style "fg=#eef6ff,bg=#1A1C25"
+set -g mode-style "fg=#000000,bg=#ffc200"
+
+set -g clock-mode-colour "#00ae6b"
+set -g copy-mode-match-style "fg=#000000,bg=#ffc200"
+set -g copy-mode-current-match-style "fg=#000000,bg=#00ae6b"
+
+set -g @hypersubatomic_theme "dark"

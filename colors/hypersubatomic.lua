@@ -1,1 +1,1 @@
-require("hypersubatomic").setup()
+require("hypersubatomic").setup({ style = "dark" })

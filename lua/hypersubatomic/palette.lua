@@ -1,6 +1,8 @@
 local M = {}
 
-M.colors = {
+M.dark = {
+  name = "hypersubatomic",
+  background = "dark",
   bg = "#0F111A",
   bg_dark = "#090B10",
   bg_float = "#1A1C25",
@@ -27,6 +29,75 @@ M.colors = {
   violet = "#875afb",
   violet_alt = "#6C35FF",
   orange = "#ff7a00",
+  exception = "#e54545",
+  json_string = "#bfbfbf",
+  line_nr = "#3B3F51",
+  whitespace = "#343946",
+  match_paren_bg = "#300089",
+  win_separator = "#383a3f",
+  tab_active_bg = "#272937",
+  diag_error_bg = "#211018",
+  diag_warn_bg = "#24200f",
+  diag_info_bg = "#0d2027",
+  diag_hint_bg = "#0d2119",
+  diff_delete_bg = "#241018",
+  diff_text_bg = "#33290f",
+  terminal_black = "#000000",
+  terminal_bright_black = "#464B5D",
 }
 
-return M.colors
+M.light = {
+  name = "hypersubatomic-light",
+  background = "light",
+  bg = "#eef6ff",
+  bg_dark = "#dce7f4",
+  bg_float = "#f8fbff",
+  bg_highlight = "#d6e3f4",
+  bg_selection = "#c3d4ee",
+  fg = "#4B526D",
+  fg_source = "#42577e",
+  fg_bright = "#0F111A",
+  fg_dim = "#8F93A2",
+  fg_muted = "#99a5ba",
+  border = "#c7d2e2",
+  black = "#000000",
+  white = "#ffffff",
+  grey = "#4B526D",
+  grey_alt = "#5f6b84",
+  green = "#00ae6b",
+  red = "#f2283c",
+  red_alt = "#ed3f00",
+  blue = "#277dff",
+  blue_alt = "#0093FF",
+  cyan = "#00a1b4",
+  yellow = "#a67f00",
+  magenta = "#d72e82",
+  violet = "#875afb",
+  violet_alt = "#6C35FF",
+  orange = "#c45e00",
+  exception = "#e54545",
+  json_string = "#4B526D",
+  line_nr = "#99a5ba",
+  whitespace = "#c7d2e2",
+  match_paren_bg = "#d9ccff",
+  win_separator = "#c7d2e2",
+  tab_active_bg = "#f8fbff",
+  diag_error_bg = "#ffe3e7",
+  diag_warn_bg = "#fff2bf",
+  diag_info_bg = "#d5f6fb",
+  diag_hint_bg = "#d8f4e8",
+  diff_delete_bg = "#ffe3e7",
+  diff_text_bg = "#fff2bf",
+  terminal_black = "#0F111A",
+  terminal_bright_black = "#8F93A2",
+}
+
+function M.get(style)
+  if style == "light" then
+    return M.light
+  end
+
+  return M.dark
+end
+
+return M
